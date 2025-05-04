@@ -56,6 +56,7 @@
 
 ## 📁 Project Structure
 
+```ini
 soil-farming-agent/
 ├── frontend/ # React frontend
 │ ├── components/ # Reusable components (Cards, Forms, Header, Footer)
@@ -71,6 +72,7 @@ soil-farming-agent/
 | |── .env
 │ └── server.js
 └── README.md
+```
 
 ## 🛠️ Installation
 
