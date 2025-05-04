@@ -16,8 +16,6 @@
 - [Contributing](#contributing)
 - [License](#license)
 
----
-
 ## ✅ Features
 
 - Admin login and secure access
@@ -34,13 +32,9 @@
 - Clean code structure and modular backend
 - Logging, error handling, and database indexing
 
----
-
 ## Link Link
 
 - The project live [link]()
-
----
 
 ## 🧰 Tech Stack
 
@@ -60,8 +54,6 @@
 - JWT (for authentication)
 - Morgan & Custom Logging
 
----
-
 ## 📁 Project Structure
 
 soil-farming-agent/
@@ -79,8 +71,6 @@ soil-farming-agent/
 | |── .env
 │ └── server.js
 └── README.md
-
----
 
 ## 🛠️ Installation
 
@@ -143,8 +133,6 @@ npm run build
 
 ```
 
----
-
 ## 🔌 API Endpoints
 
 - Soil Routes
@@ -163,8 +151,6 @@ npm run build
   PUT /distributors/update/:id
   DELETE /distributors/delete/:id
 
----
-
 ## 🚀 Usage
 
 - Admin Role: Log in to manage soils & distributors via the dashboard.
@@ -174,8 +160,6 @@ npm run build
 - Search using filters and view details using responsive cards.
 
 - View analytics and charts (admin only) for insights into usage patterns.
-
----
 
 ## 🤝 Contributing
 
