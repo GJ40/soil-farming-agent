@@ -1,23 +1,35 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { getToken, getUser } from "../utils/Tokens";
+import { getToken, getUser, removeToken, removeUser } from "../utils/Tokens";
+import { Instance } from '../utils/Instance';
+import { toast } from 'react-toastify';
+
 
 function Header() {
     const navigate = useNavigate();
     const token = getToken();
     const user = getUser();
 
-    function logOut() {
-        //clear the token
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        localStorage.removeItem("isAdmin");
-        // token = false;
-        navigate("/");
+    const logOut = async () => {
+        try {
+            //clear the token
+            removeToken();
+            removeUser();
+            const res = await Instance.post('/users/logout');
+            // setTimeout(() => {
+            //     navigate("/");
+            // }, 3000);
+            navigate("/");
+            toast.success(res.data.message);
+
+        } catch (error) {
+            console.log(error);
+            toast.error(error.data.message);
+        }
     }
 
     return (
-        <header className="bg-green-700 text-white shadow-md">
+        <header className="bg-green-700 text-white shadow-md w-full top-0 sticky z-1">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Brand */}
                 <span
@@ -38,6 +50,9 @@ function Header() {
                                 (<>
                                     <NavLink to="/admin/dashboard" className="px-4 py-2 rounded-md transition active:bg-green-900 hover:bg-green-600">
                                         Dashboard
+                                    </NavLink>
+                                    <NavLink to="/admin/users" className="px-4 py-2 rounded-md transition active:bg-green-900 hover:bg-green-600">
+                                        Users
                                     </NavLink>
                                 </>) :
                                 (<></>)

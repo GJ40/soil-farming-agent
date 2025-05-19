@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const { METHODS } = require("http");
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
@@ -11,26 +12,31 @@ dotenv.config();
 const userRoutes = require('./routes/userRoutes');
 const soilRoutes = require('./routes/soilRoutes');
 const distributorRoutes = require('./routes/distributorRoutes');
+const dashbaordRoutes = require('./routes/dashbaordRoutes');
 
 //db connection
 const connect = require('./utils/db');
 
-app.use(
-  cors({
+const corsOptions = cors({
     origin: ["http://localhost:5173"],
     credentials: true,
     METHODS: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+});
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(corsOptions);
+
 
 app.get("/api", (req, res) => {
   res.json({ message: "Hello, World!" });
 });
-app.use(express.json());
 
+// routes
 app.use('/users', userRoutes);
 app.use('/soils', soilRoutes);
 app.use('/distributors', distributorRoutes);
+app.use('/admin', dashbaordRoutes);
 
 app.listen(process.env.PORT, () => {
   connect();

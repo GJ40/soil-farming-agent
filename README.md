@@ -69,6 +69,7 @@ soil-farming-agent/
 │ ├── models/ # Mongoose schemas
 │ ├── routes/ # API route handlers
 │ ├── middlewares/
+| ├── utils/
 | |── .env
 │ └── server.js
 └── README.md
@@ -102,9 +103,11 @@ npm install
 - Create a .env file in /backend:
 
 ```bash
-PORT=5000
+PORT=4000
+NODE_ENV = # development or production
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
+ACCESS_TOKEN_SECRET =
+REFRESH_TOKEN_SECRET =
 
 ```
 
@@ -136,6 +139,15 @@ npm run build
 ```
 
 ## 🔌 API Endpoints
+
+- User Routes
+  GET /
+  POST /login
+  POST /logout
+  POST /refresh
+  POST /getUsers
+  POST /register
+  DELETE /deleteUser
 
 - Soil Routes
   POST /soils/addSoil

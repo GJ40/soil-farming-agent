@@ -18,12 +18,12 @@ export function getUser() {
     return JSON.parse(localStorage.getItem("user"));
 }
 
-// // function to setAdmin
-// export function setAdmin(isAdmin) {
-//     localStorage.setItem("isAdmin", JSON.stringify(isAdmin));
-// }
+// function to remove user
+export function removeUser() {
+    localStorage.removeItem('user');
+}
 
-// // function to getAdmin
-// export function getAdmin() {
-//     return JSON.parse(localStorage.getItem("isAdmin"));
-// }
+// function to remove token
+export function removeToken() {
+    localStorage.removeItem('token');
+}

@@ -1,8 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getToken } from '../utils/Tokens';
+
 
 function Home() {
     const navigate = useNavigate();
+    const token = getToken();
 
     return (
         <div className="bg-gray-50 min-h-screen">
@@ -16,18 +19,26 @@ function Home() {
                         Discover the perfect crops for your soil type and connect with verified crop/seed distributors. Our system empowers farmers and agriculturalists with reliable insights and expert-backed recommendations.
                     </p>
                     <div className="flex justify-center md:justify-start gap-4">
-                        <button
-                            onClick={() => navigate('/register')}
-                            className="bg-green-700 text-white px-6 py-2 rounded-md hover:bg-green-800 transition"
-                        >
-                            Get Started
-                        </button>
-                        <button
-                            onClick={() => navigate('/login')}
-                            className="bg-white text-green-700 border border-green-700 px-6 py-2 rounded-md hover:bg-green-100 transition"
-                        >
-                            Login
-                        </button>
+
+                        {token ?
+                            (<></>)
+                            :
+                            (<>
+                                <button
+                                    onClick={() => navigate('/register')}
+                                    className="bg-green-700 text-white px-6 py-2 rounded-md hover:bg-green-800 transition cursor-pointer"
+                                >
+                                    Get Started
+                                </button>
+                                <button
+                                    onClick={() => navigate('/login')}
+                                    className="bg-white text-green-700 border border-green-700 px-6 py-2 rounded-md cursor-pointer hover:bg-green-100 transition"
+                                >
+                                    Login
+                                </button>
+                            </>)
+                        }
+
                     </div>
                 </div>
                 <div className="md:w-1/2">
@@ -124,7 +135,7 @@ function Home() {
                         ></textarea>
                         <button
                             type="submit"
-                            className="bg-green-700 text-white px-6 py-2 rounded-md hover:bg-green-800 transition"
+                            className="bg-green-700 text-white px-6 py-2 rounded-md hover:bg-green-800 transition cursor-pointer"
                         >
                             Send Message
                         </button>

@@ -28,6 +28,10 @@ const addDistributor = async (req, res) => {
   // Update Distributor
   const updateDistributor = async (req, res) => {
     try {
+      const { name, location, contact, distributes } = await req.body;
+      if(!(name && location && contact && distributes)){
+        return res.status(400).json({ message: 'Please fill all required fields', success: false });
+      }
       const distributor = await Distributor.findByIdAndUpdate(req.params.id, req.body, { new: true });
       if (!distributor) return res.status(404).json({ message: 'Distributor not found', success: false });
       res.status(201).json({ message: "Updated distributor details successfully.", success: true, distributor: distributor });

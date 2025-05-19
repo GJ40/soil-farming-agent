@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Instance } from '../utils/Instance';
 import { getToken } from '../utils/Tokens'; // Adjust path as needed
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { MdDashboard } from "react-icons/md";
+
 
 const DistributorForm = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         location: '',
@@ -52,7 +57,7 @@ const DistributorForm = () => {
                 }
             });
 
-            alert('Distributor added successfully!');
+            toast.success('Distributor added successfully!');
             setFormData({
                 name: '',
                 location: '',
@@ -67,12 +72,17 @@ const DistributorForm = () => {
             });
         } catch (err) {
             console.error(err);
-            alert(err.response?.data || 'Failed to add distributor');
+            toast.error(err.response?.data || 'Failed to add distributor');
         }
     };
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-10">
+            {/* Dashboard */}
+            <button className='text-white text-xl p-4 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 font-bold absolute top-5 left-10 cursor-pointer rounded shadow-xl flex flex-row justify-between items-center' onClick={() => navigate('/admin/dashboard')}>
+                <MdDashboard />
+                <span className='ml-2'>Dashboard</span>
+            </button>
             <h2 className="text-2xl font-bold mb-6 text-blue-700">Add Distributor Details</h2>
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md">
                 <div>
@@ -160,6 +170,7 @@ const DistributorForm = () => {
                         name="distributes"
                         value={formData.distributes}
                         onChange={handleChange}
+                        required
                         placeholder="e.g. wheat, rice, maize"
                         className="w-full border border-gray-300 p-2 rounded-md"
                     />

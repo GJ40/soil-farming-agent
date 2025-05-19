@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaSeedling, FaTractor, FaPlusCircle, FaEye } from 'react-icons/fa';
 import { getToken, getUser } from '../utils/Tokens';
 import { Pie, Bar } from 'react-chartjs-2';
+import randomColor from 'randomcolor';
+import { toast } from 'react-toastify';
 import {
     Chart as ChartJS,
     ArcElement,
@@ -13,43 +15,66 @@ import {
     BarElement,
     Title,
 } from 'chart.js';
+import { Instance } from '../utils/Instance';
+import { useState } from 'react';
+
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const token = getToken();
         const user = getUser();
+
         if (!(token && user.role === 'admin')) {
             navigate("/login");
         }
-    }, []);
 
-    // Dummy data – replace with fetched stats
-    const totalSoils = 12;
-    const totalDistributors = 8;
+        const dashboard = async () => {
+            await Instance.get('/admin/dashboard', {
+                Authorization: token,
+            }).then((res) => {
+                // console.log(res.data);
+                setData(res.data);
+            }).catch((err) => {
+                console.log(err);
+                toast.error(err.response.data.message);
+            }).finally(() => {
+                setLoading(false);
+            });
+        }
+
+        dashboard();
+    }, [])
+
 
     const cropDistributionData = {
         labels: ['Wheat', 'Rice', 'Cotton', 'Soybean', 'Maize'],
+        // labels: data?.pieCharts?.cropStats?.cropNames ?? [],
         datasets: [
             {
                 label: 'Distributors per Crop',
-                data: [4, 3, 5, 2, 6],
+                // data: data?.pieCharts?.cropStats?.counts ?? [],
+                data: [1, 1, 1, 1, 1],
                 backgroundColor: ['#34d399', '#60a5fa', '#f472b6', '#fbbf24', '#a78bfa'],
+                // backgroundColor: randomColor({ luminosity: 'white', count: data?.pieCharts?.cropStats?.cropNames.length ?? 0, hue: 'random' }),
                 borderWidth: 1,
             },
         ],
     };
 
     const soilTypesData = {
-        labels: ['Black Soil', 'Red Soil', 'Alluvial', 'Laterite'],
+        labels: ['Black Soil', 'Red Soil', 'Alluvial', 'Mountain Soil', 'Desert Soil'],
         datasets: [
             {
                 label: 'Soil Types',
-                data: [5, 3, 2, 2],
-                backgroundColor: ['#6b7280', '#ef4444', '#f59e0b', '#10b981'],
+                data: [2, 1, 1, 1, 1],
+                backgroundColor: ['#6b7280', '#ef4444', '#f59e0b', '#10b981', ...randomColor({ luminosity: 'dark', count: 1, hue: 'random' })],
+                // backgroundColor: randomColor({ luminosity: 'black', count: 4, hue: 'simple' }),
                 borderWidth: 1,
             },
         ],
@@ -124,49 +149,58 @@ const AdminDashboard = () => {
                     </div>
                 </div>
                 <div className="max-w-7xl mx-auto mt-8">
-                    {/* Data Cards */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-                        <div className="bg-white shadow-md rounded p-4 text-center border">
-                            <h2 className="text-lg text-gray-600">Total Soils</h2>
-                            <p className="text-2xl font-bold text-green-600">{totalSoils}</p>
-                        </div>
-                        <div className="bg-white shadow-md rounded p-4 text-center border">
-                            <h2 className="text-lg text-gray-600">Total Distributors</h2>
-                            <p className="text-2xl font-bold text-blue-600">{totalDistributors}</p>
-                        </div>
-                        <div className="bg-white shadow-md rounded p-4 text-center border">
-                            <h2 className="text-lg text-gray-600">Crop Types</h2>
-                            <p className="text-2xl font-bold text-purple-600">5</p>
-                        </div>
-                        <div className="bg-white shadow-md rounded p-4 text-center border">
-                            <h2 className="text-lg text-gray-600">Active Locations</h2>
-                            <p className="text-2xl font-bold text-yellow-600">6</p>
-                        </div>
-                    </div>
+                    {loading ?
+                        (<>
+                            <div className="max-w-7xl mx-auto mt-8 text-center">
+                                <p><span className='text-center text-2xl text-stone-500'>Loading...</span></p>
+                            </div>
+                        </>) :
+                        (<>
+                            {/* Data Cards */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+                                <div className="bg-white shadow-md rounded p-4 text-center border">
+                                    <h2 className="text-lg text-gray-600">Total Soils</h2>
+                                    <p className="text-2xl font-bold text-green-600">{data?.dataCards?.soilCount || 'NA'}</p>
+                                </div>
+                                <div className="bg-white shadow-md rounded p-4 text-center border">
+                                    <h2 className="text-lg text-gray-600">Total Distributors</h2>
+                                    <p className="text-2xl font-bold text-blue-600">{data?.dataCards?.distCount || 'NA'}</p>
+                                </div>
+                                <div className="bg-white shadow-md rounded p-4 text-center border">
+                                    <h2 className="text-lg text-gray-600">Crop Types</h2>
+                                    <p className="text-2xl font-bold text-purple-600">{data?.dataCards?.cropTypes || 'NA'}</p>
+                                </div>
+                                <div className="bg-white shadow-md rounded p-4 text-center border">
+                                    <h2 className="text-lg text-gray-600">Active Locations</h2>
+                                    <p className="text-2xl font-bold text-yellow-600">{data?.dataCards?.activeLocationCount || 'NA'}</p>
+                                </div>
+                            </div>
 
-                    {/* Pie Charts */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                        <div className="bg-white p-4 shadow-md rounded border">
-                            <h3 className="text-lg font-semibold mb-4 text-gray-700">Crop Distribution (Distributors)</h3>
-                            <Pie data={cropDistributionData} />
-                        </div>
-                        <div className="bg-white p-4 shadow-md rounded border">
-                            <h3 className="text-lg font-semibold mb-4 text-gray-700">Soil Type Distribution</h3>
-                            <Pie data={soilTypesData} />
-                        </div>
-                    </div>
+                            {/* Pie Charts */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                                <div className="bg-white p-4 shadow-md rounded border">
+                                    <h3 className="text-lg font-semibold mb-4 text-gray-700">Crop Distribution (Distributors)</h3>
+                                    <Pie data={cropDistributionData} />
+                                </div>
+                                <div className="bg-white p-4 shadow-md rounded border">
+                                    <h3 className="text-lg font-semibold mb-4 text-gray-700">Soil Type Distribution</h3>
+                                    <Pie data={soilTypesData} />
+                                </div>
+                            </div>
 
-                    {/* Bar Chart */}
-                    <div className="bg-white p-6 shadow-md rounded border">
-                        <h3 className="text-lg font-semibold mb-4 text-gray-700">Distributors per Crop</h3>
-                        <Bar data={barChartData} options={{
-                            responsive: true,
-                            plugins: {
-                                legend: { display: false },
-                                title: { display: true, text: 'Distributors by Crop Type' }
-                            }
-                        }} />
-                    </div>
+                            {/* Bar Chart */}
+                            <div className="bg-white p-6 shadow-md rounded border">
+                                <h3 className="text-lg font-semibold mb-4 text-gray-700">Distributors per Crop</h3>
+                                <Bar data={barChartData} options={{
+                                    responsive: true,
+                                    plugins: {
+                                        legend: { display: false },
+                                        title: { display: true, text: 'Distributors by Crop Type' }
+                                    }
+                                }} />
+                            </div>
+                        </>)
+                    }
                 </div>
             </div>
         </div>

@@ -29,6 +29,10 @@ const addSoil = async (req, res) => {
 // Update Soil
 const updateSoil = async (req, res) => {
   try {
+    const { soilType, description, phRange } = await req.body;
+    if(!(soilType && description && phRange.min && phRange.max)){
+      return res.status(400).json({ message: 'Please fill all required fields', success: false });
+    }
     const soil = await Soil.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!soil) return res.status(404).json({ message: 'Soil not found', success: false });
     res.status(201).json({ message: "Updated soil details successfully.", success: true, soil: soil });

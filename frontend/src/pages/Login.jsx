@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Instance } from "../utils/Instance";
 import { Link, useNavigate } from "react-router-dom";
 import { getToken, setToken, setUser } from "../utils/Tokens";
+import { toast } from "react-toastify";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ function Login() {
         if (token) {
             navigate("/");
         }
-    }, []);
+    });
 
 
     function handleSubmit(event) {
@@ -22,16 +23,16 @@ function Login() {
             .then((res) => {
                 // console.log(res.message);
                 if (res.data.success) {
-                    alert(res.data.message)
                     // console.log(res.data.token, res.data.userDoc);
                     setToken(res.data.token);
                     setUser(res.data.userDoc);
                     navigate("/");
+                    toast.success(res.data.message)
                 }
             })
             .catch((err) => {
-                console.log(err.response);
-                alert(err.response.message)
+                // console.log(err.response);
+                toast.error(err.response.data.message)
             });
         event.preventDefault();
     }
@@ -68,14 +69,14 @@ function Login() {
 
                         <button
                             onClick={handleSubmit}
-                            className="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition"
+                            className="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition cursor-pointer"
                         >
                             Login
                         </button>
                     </form>
                     <p className="text-center mt-4 text-sm">
                         Don't have an account?{' '}
-                        <Link to="/register" className="text-green-700 hover:underline">
+                        <Link to="/register" className="text-green-700 hover:underline cursor-pointer">
                             Register
                         </Link>
                     </p>

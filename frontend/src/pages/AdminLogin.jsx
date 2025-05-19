@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Instance } from "../utils/Instance";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getToken, getUser, setToken, setUser } from "../utils/Tokens";
+import { toast } from "react-toastify";
 
 function AdminLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+
 
     useEffect(() => {
         const token = getToken();
@@ -23,7 +25,7 @@ function AdminLogin() {
         Instance.post("/users/adminLogin", loginObj)
             .then((res) => {
                 console.log(res.data);
-                alert(res.data.message);
+                toast.success(res.data.message);
                 setToken(res.data.token);
                 setUser(res.data.userDoc);
                 navigate("/");
@@ -31,6 +33,7 @@ function AdminLogin() {
             })
             .catch((err) => {
                 console.log(err);
+                toast.error(err.data.message);
             });
         event.preventDefault();
     }

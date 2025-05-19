@@ -4,13 +4,15 @@ const distributorSchema = new mongoose.Schema({
     name: { type: String, required: true },
     location: { type: String, require: true},
     image: String,
+    contactPerson: String,
     contact: {
       phone: { type: String, require: true},
       email: { type: String, require: true},
       whatsapp: String,
       facebook: String
     },
-    distributes: [String], // crop types
+    services: [String],
+    distributes: {type: [String], required: true}, // crop types
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     createdAt: { type: Date, default: Date.now }
 });

@@ -4,14 +4,14 @@ dotenv.config();
 
 const User = require('../models/User');
 
-//authorisation to check if admin is logged in
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
+//authorisation to check if admin is logged in;
 const adminAuth = async (req, res, next) => {
     const token = req.header("Authorization");
+    // console.log(token)
     if (!token) return res.status(401).send("Access Denied");
     try {
       //decode the token
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
       // console.log(decoded);
       // get user by email
       const user = await User.findOne({ email: decoded.email });
@@ -26,22 +26,18 @@ const adminAuth = async (req, res, next) => {
   };
 
   const userAuth = async (req, res, next) => {
-    const token = req.header("Authorization");
+    const token = await req.header("Authorization");
     if (!token) return res.status(401).send("Access Denied");
     try {
-      //decode the token
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-      // console.log(decoded);
-      // get user by email
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
       const user = await User.findOne({ email: decoded.email });
-      if (!user) {
-        res.status(400).json({ message: "Access Permission denied." });
-      } else {
-        next();
-      }
+      if (!user) return res.status(403).json({ message: "Access Permission denied." });
+      next();
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      return res.status(401).json({ message: "Invalid token", success: false });
     }
   };
+  
 
   module.exports = { adminAuth, userAuth };

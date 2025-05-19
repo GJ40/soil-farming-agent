@@ -2,11 +2,27 @@ const mongoose = require('mongoose');
 
 const soilSchema = new mongoose.Schema({
     soilType: { type: String, required: true },
-    description: String,
+    description: { type: String, required: true },
+    moistureContent: Number,
     image: String,
+    nutrients: {
+      nitrogen: {
+        type: String,
+        enum: ['High', 'Moderate', 'Low'], // Allowed values for the dropdown
+      },
+      phospohrus: {
+        type: String,
+        enum: ['High', 'Moderate', 'Low'], // Allowed values for the dropdown
+      },
+      potassium: {
+        type: String,
+        enum: ['High', 'Moderate', 'Low'], // Allowed values for the dropdown
+      }
+    },
+    region: String,
     phRange: {
-      min: Number,
-      max: Number
+      min: { type: Number, required: true },
+      max: { type: Number, required: true }
     },
     suitableCrops: [String],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

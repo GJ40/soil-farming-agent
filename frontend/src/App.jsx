@@ -12,9 +12,11 @@ import SoilForm from './components/SoilForm';
 import AdminProtectedRoute from './utils/AdminProtectedRoute';
 import DistributorForm from './components/DistributorForm';
 import AdminDashboard from './pages/AdminDashboard';
+import { Bounce, ToastContainer } from 'react-toastify';
+import Users from './pages/Users';
+
 
 function App() {
-
 
   return (
     <>
@@ -27,6 +29,14 @@ function App() {
               element={
                 <AdminProtectedRoute>
                   <AdminDashboard />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/users"
+              element={
+                <AdminProtectedRoute>
+                  <Users />
                 </AdminProtectedRoute>
               }
             />
@@ -47,6 +57,16 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick={true}
+        pauseOnHover={false}
+        theme="light"
+        transition={Bounce}
+      />
     </>
   );
 }
