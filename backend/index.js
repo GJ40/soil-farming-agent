@@ -18,7 +18,7 @@ const dashbaordRoutes = require('./routes/dashbaordRoutes');
 const connect = require('./utils/db');
 
 const corsOptions = cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", process.env.ORIGIN],
     credentials: true,
     METHODS: ["GET", "POST", "PUT", "DELETE"],
 });
