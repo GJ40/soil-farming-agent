@@ -1,7 +1,7 @@
 import React from 'react';
 import { getToken, getUser } from '../utils/Tokens';
 import { useState } from 'react';
-import UpdateSoilModal from './updateSoilModal';
+import UpdateSoilModal from './UpdateSoilModal';
 import { Instance } from '../utils/Instance';
 import { toast } from 'react-toastify';
 import DeleteConfirmModal from './DeleteConfirmModal';
