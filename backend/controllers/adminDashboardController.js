@@ -53,7 +53,7 @@ const dashboard = async (req, res) => {
             }
         ]);
 
-        console.log(cropsStats[0]);
+        // console.log(cropsStats[0]);
 
         const results = {
             dataCards: {

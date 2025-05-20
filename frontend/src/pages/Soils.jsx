@@ -74,7 +74,7 @@ function Soils() {
     return (
         <div className="w-full mx-auto px-0 pb-10 pt-0 flex flex-col items-center">
 
-            <div className="min-w-full bg-white top-13 md:top-13 sticky shadow-sm mb-2 px-4 z-1">
+            <div className="min-w-full bg-white top-19 md:top-13 sticky shadow-sm mb-2 px-4">
                 <div className="max-w-6xl mx-auto">
                     {/* Search Bar */}
                     <div className="flex flex-col md:flex-row items-center gap-4 my-6">
@@ -98,13 +98,18 @@ function Soils() {
             {/* Soil Cards */}
             <div className="w-full flex justify-center px-4">
                 <div className="max-w-6xl">
-                    {currentSoils.length > 0 ? (
-                        currentSoils.map((soil) => (
-                            <SoilCard key={soil._id} soil={soil} fetchSoils={fetchSoils} />
-                        ))
-                    ) : (
-                        <p className="text-center text-gray-600">No soils found.</p>
-                    )}
+                    {currentSoils ?
+                        (currentSoils.length > 0 ? (
+                            currentSoils.map((soil) => (
+                                <SoilCard key={soil._id} soil={soil} fetchSoils={fetchSoils} />
+                            ))
+                        ) : (
+                            <p className="text-center text-gray-600">No soils found.</p>
+                        )) :
+                        (<>
+                            <p className="text-2xl text-center text-gray-600">Loading...</p>
+                        </>)
+                    }
                 </div>
             </div>
 

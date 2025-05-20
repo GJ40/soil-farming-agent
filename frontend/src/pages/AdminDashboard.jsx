@@ -25,6 +25,22 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const token = getToken();
+
+    const dashboard = async () => {
+        await Instance.get('/admin/dashboard', {
+            Authorization: token,
+        }).then((res) => {
+            // console.log(res.data);
+            setData(res.data);
+        }).catch((err) => {
+            console.log(err);
+            toast.error(err.response.data.message);
+        }).finally(() => {
+            setLoading(false);
+        });
+    }
+
 
     useEffect(() => {
         const token = getToken();
@@ -32,20 +48,6 @@ const AdminDashboard = () => {
 
         if (!(token && user.role === 'admin')) {
             navigate("/login");
-        }
-
-        const dashboard = async () => {
-            await Instance.get('/admin/dashboard', {
-                Authorization: token,
-            }).then((res) => {
-                // console.log(res.data);
-                setData(res.data);
-            }).catch((err) => {
-                console.log(err);
-                toast.error(err.response.data.message);
-            }).finally(() => {
-                setLoading(false);
-            });
         }
 
         dashboard();

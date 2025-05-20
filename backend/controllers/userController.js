@@ -21,7 +21,7 @@ const getAllUsers = async (req, res) => {
 const registerUser = async (req, res) => {
   // console.log(req.body);
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
     if(!(name && email && password)){
       return res.status(400).json({ message: "Please fill all required fields.", success: false });
     }

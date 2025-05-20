@@ -51,7 +51,7 @@ function UserTable({ users, fetchUsers }) {
                         {users.map((user) => (
                             <tr key={user._id} className="hover:bg-gray-100 transition duration-150">
                                 <td className="py-3 px-6">{user.name}</td>
-                                <td className="py-3 px-6">{user.email}</td>
+                                <td className="py-3 px-6 overflow-x-auto">{user.email}</td>
                                 <td className="py-3 px-6 capitalize">{user.role}</td>
                                 <td className="py-3 px-6 text-center">
                                     <button

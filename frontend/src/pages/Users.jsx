@@ -49,7 +49,7 @@ function Users() {
     return (
         <div className="w-full mx-auto px-0 pb-10 pt-0 flex flex-col items-center">
             {/* Search */}
-            <div className="min-w-full bg-white top-13 sticky shadow-sm mb-2 px-4 z-1">
+            <div className="min-w-full bg-white top-19 md:top-13 sticky shadow-sm mb-2 px-4">
                 <div className="max-w-6xl mx-auto">
                     <div className="flex flex-col md:flex-row items-center gap-4 my-6">
                         <input
@@ -61,7 +61,7 @@ function Users() {
                         />
                         <button
                             onClick={() => handleSearch(query)}
-                            className="bg-green-700 text-white px-6 py-2 rounded-md hover:bg-green-800 transition cursor-pointer"
+                            className="bg-green-700 text-white px-6 py-2 rounded-md hover:bg-green-800 transition cursor-pointer w-full md:w-34"
                         >
                             Search
                         </button>
@@ -71,11 +71,15 @@ function Users() {
 
             {/* Table */}
             <div className="w-full max-w-6xl px-4">
-                {users.length > 0 ? (
+                {users ? (users.length > 0 ? (
                     <UserTable users={currentUsers} fetchUsers={fetchUsers} />
                 ) : (
                     <p className="text-center text-gray-600">No users found.</p>
-                )}
+                )) :
+                    (<>
+                        <p className="text-2xl text-center text-gray-600">Loading...</p>
+                    </>)
+                }
             </div>
 
             {/* Pagination */}
