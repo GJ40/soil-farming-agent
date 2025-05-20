@@ -19,13 +19,13 @@ const connect = require('./utils/db');
 const corsOptions = {
     origin: ["http://localhost:5173", process.env.ORIGIN],
     credentials: true,
-    METHODS: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 };
 
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // preflight support
 app.use(express.json());
 app.use(cookieParser());
-// app.options("*", cors(corsOptions)); // preflight support
-app.use(cors(corsOptions));
 
 
 
