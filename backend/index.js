@@ -16,16 +16,16 @@ const dashbaordRoutes = require('./routes/dashbaordRoutes');
 
 //db connection
 const connect = require('./utils/db');
-const corsOptions = cors({
+const corsOptions = {
     origin: ["http://localhost:5173", process.env.ORIGIN],
     credentials: true,
     METHODS: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-});
+};
 
 app.use(express.json());
 app.use(cookieParser());
-app.options("*", cors());
-app.use(corsOptions);
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // preflight support
 
 
 app.get("/api", (req, res) => {
