@@ -17,7 +17,8 @@ const dashbaordRoutes = require('./routes/dashbaordRoutes');
 //db connection
 const connect = require('./utils/db');
 const corsOptions = {
-    origin: process.env.ORIGIN ? process.env.ORIGIN : "http://localhost:5173",
+    // origin: process.env.ORIGIN ? process.env.ORIGIN : "http://localhost:5173",
+    origin: "https://soilfarmingagent.netlify.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 };
