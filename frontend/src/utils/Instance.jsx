@@ -1,8 +1,10 @@
 // create axios instance and export
 import axios from "axios";
 import { getToken, removeToken, removeUser, setToken } from "./Tokens";
+
+// To Use env variables create .env file in project dorectory and name vars like 'VITE_your_var'
 export const Instance = axios.create({
-    baseURL: "http://localhost:4000/",
+    baseURL: import.meta.env.VITE_BASE_URL ?? "http://localhost:4000/",
     withCredentials: true
 });
 
