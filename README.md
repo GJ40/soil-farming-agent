@@ -34,7 +34,7 @@
 
 ## Link Link
 
-- The project live [link]()
+- The project live [link](https://soilfarmingagent.netlify.app)
 
 ## 🧰 Tech Stack
 
