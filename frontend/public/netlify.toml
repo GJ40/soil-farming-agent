@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/*"
-  to = "https://soil-farming-agent-j0uz.onrender.com"
-  status = 200
+from="/*"
+to="/index.html"
+status=200
