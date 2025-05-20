@@ -63,7 +63,15 @@ const SoilForm = () => {
             suitableCrops: formData.suitableCrops
                 .split(',')
                 .map((crop) => crop.trim()),
+            moistureContent: parseFloat(formData.moistureContent),
+            region: formData.region,
+            nutrients: {
+                nitrogen: formData.nutrients.nitrogen,
+                phospohrus: formData.nutrients.phospohrus,
+                potassium: formData.nutrients.potassium
+            }
         };
+
 
         try {
             const token = getToken();
@@ -95,10 +103,10 @@ const SoilForm = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="max-w-3xl mx-auto px-4 py-10 mt-16 md:mt-auto">
 
             {/* Dashboard */}
-            <button className='text-white text-xl p-4 bg-green-600 hover:bg-green-500 active:bg-green-700 font-bold absolute top-5 left-10 cursor-pointer rounded shadow-xl flex flex-row justify-between items-center' onClick={() => navigate('/admin/dashboard')}>
+            <button className='text-white text-xl p-4 bg-green-600 hover:bg-green-500 active:bg-green-700 font-bold absolute top-5 left-5 cursor-pointer rounded shadow-xl flex flex-row justify-between items-center' onClick={() => navigate('/admin/dashboard')}>
                 <MdDashboard />
                 <span className='ml-2'>Dashboard</span>
             </button>

@@ -98,7 +98,7 @@ function Soils() {
             {/* Soil Cards */}
             <div className="w-full flex justify-center px-4">
                 <div className="max-w-6xl">
-                    {currentSoils ?
+                    {soils ?
                         (currentSoils.length > 0 ? (
                             currentSoils.map((soil) => (
                                 <SoilCard key={soil._id} soil={soil} fetchSoils={fetchSoils} />

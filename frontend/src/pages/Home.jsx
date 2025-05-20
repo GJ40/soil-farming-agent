@@ -94,7 +94,7 @@ function Home() {
                 </div>
             </section>
             {/* About Section */}
-            <section className="py-12 bg-gray-100">
+            <section id='about' className="py-12 bg-gray-100">
                 <div className="max-w-6xl mx-auto px-6 text-center">
                     <h2 className="text-3xl font-semibold text-green-700 mb-6">About Us</h2>
                     <p className="text-gray-700 text-lg max-w-3xl mx-auto">
@@ -107,7 +107,7 @@ function Home() {
             </section>
 
             {/* Contact Us Section */}
-            <section className="py-12 bg-white">
+            <section id='contact' className="py-12 bg-white">
                 <div className="max-w-6xl mx-auto px-6 text-center">
                     <h2 className="text-3xl font-semibold text-green-700 mb-6">Contact Us</h2>
                     <p className="text-gray-700 mb-8">

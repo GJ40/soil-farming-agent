@@ -6,19 +6,42 @@ dotenv.config();
 // Add Soil
 const addSoil = async (req, res) => {
   try {
-    const { soilType, description, phRange, suitableCrops } = req.body;
+    const { soilType, description, phRange, image, suitableCrops, moistureContent, region, nutrients } = req.body;
+    const data = req.body;
     if(!(soilType && description && phRange)){
         return res.status(400).json({ message: "Please fill all required fields.", success: false });
     }
+    const optionalFields = {
+      image,
+      suitableCrops,
+      moistureContent,
+      region,
+      nutrients
+    };
+
+    const filteredOptionalFields = Object.entries(optionalFields).reduce((acc, [key, val]) => {
+      if (
+        val !== undefined &&
+        val !== '' &&
+        (typeof val !== 'object' || Object.values(val).some((v) => v !== ''))
+      ) {
+        acc[key] = val;
+      }
+      return acc;
+    }, {});
+
     const newSoil = new Soil(
         { 
             soilType, 
             description, 
             phRange, 
-            suitableCrops 
+            suitableCrops,
+            ...filteredOptionalFields
         }
     );
+
     const saveSoil = await newSoil.save();
+    
     res.status(201).json({ message: "Added soil to Database successfully.", success: true, soil: saveSoil});
   } catch (error) {
     console.log(error);

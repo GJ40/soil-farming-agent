@@ -107,7 +107,7 @@ const Distributors = () => {
             {/* Distributor Cards */}
             <div className="w-full flex justify-center px-4">
                 <div className="max-w-6xl">
-                    {currentDists ?
+                    {distributors ?
                         (currentDists.length > 0 ? (
                             currentDists.map((distributor) => (
                                 <DistributorCard key={distributor._id} distributor={distributor} fetchDistributors={fetchDistributors} />

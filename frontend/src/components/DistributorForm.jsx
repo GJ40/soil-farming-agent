@@ -12,12 +12,14 @@ const DistributorForm = () => {
         name: '',
         location: '',
         image: '',
+        contactPerson: '',
         contact: {
             phone: '',
             email: '',
             whatsapp: '',
             facebook: ''
         },
+        services: '',
         distributes: ''
     });
 
@@ -46,7 +48,12 @@ const DistributorForm = () => {
 
         const payload = {
             ...formData,
-            distributes: formData.distributes.split(',').map(crop => crop.trim())
+            services: formData.services
+                ? formData.services.split(',').map(s => s.trim()).filter(Boolean)
+                : [],
+            distributes: formData.distributes
+                ? formData.distributes.split(',').map(c => c.trim()).filter(Boolean)
+                : []
         };
 
         try {
@@ -62,12 +69,14 @@ const DistributorForm = () => {
                 name: '',
                 location: '',
                 image: '',
+                contactPerson: '',
                 contact: {
                     phone: '',
                     email: '',
                     whatsapp: '',
                     facebook: ''
                 },
+                services: '',
                 distributes: ''
             });
         } catch (err) {
@@ -77,9 +86,9 @@ const DistributorForm = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="max-w-3xl mx-auto px-4 py-10 mt-16 md:mt-auto">
             {/* Dashboard */}
-            <button className='text-white text-xl p-4 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 font-bold absolute top-5 left-10 cursor-pointer rounded shadow-xl flex flex-row justify-between items-center' onClick={() => navigate('/admin/dashboard')}>
+            <button className='text-white text-xl p-4 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 font-bold absolute top-5 left-5 cursor-pointer rounded shadow-xl flex flex-row justify-between items-center' onClick={() => navigate('/admin/dashboard')}>
                 <MdDashboard />
                 <span className='ml-2'>Dashboard</span>
             </button>
@@ -115,6 +124,16 @@ const DistributorForm = () => {
                         value={formData.image}
                         onChange={handleChange}
                         className="w-full border border-gray-300 p-2 rounded-md"
+                    />
+                </div>
+                <div>
+                    <label className="block mb-1 font-medium">Contact Person</label>
+                    <input
+                        type="text"
+                        name="contactPerson"
+                        value={formData.contactPerson}
+                        onChange={handleChange}
+                        className="w-full border border-gray-300 p-2 rounded"
                     />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -164,7 +183,18 @@ const DistributorForm = () => {
                     </div>
                 </div>
                 <div>
-                    <label className="block font-medium mb-1">Distributes Crops (comma-separated)</label>
+                    <label className="block mb-1 font-medium">Services Offered</label>
+                    <input
+                        type="text"
+                        name="services"
+                        value={formData.services}
+                        onChange={handleChange}
+                        placeholder="e.g. transport, storage"
+                        className="w-full border border-gray-300 p-2 rounded"
+                    />
+                </div>
+                <div>
+                    <label className="block font-medium mb-1">Distributes Crops (comma-separated) *</label>
                     <input
                         type="text"
                         name="distributes"

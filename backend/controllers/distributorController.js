@@ -6,16 +6,34 @@ dotenv.config();
 // Add Distributor
 const addDistributor = async (req, res) => {
     try {
-      const { name, location, image, contact, distributes } = req.body;
-      if(!(name && location && contact)){
+      const { name, location, image, contact, distributes, contactPerson, services } = req.body;
+      if(!(name && location && contact && distributes)){
         return res.status(400).json({ message: "Please fill all required fields.", success: false });
       }
+
+      const optionalFields = {
+        image,
+        contactPerson,
+        services
+      }
+
+      const filteredOptionalFields = Object.entries(optionalFields).reduce((acc, [key, val]) => {
+        if (
+          val !== undefined &&
+          val !== '' &&
+          (typeof val !== 'object' || Object.values(val).some((v) => v !== ''))
+        ) {
+          acc[key] = val;
+        }
+        return acc;
+      }, {});
+
       const newDistributor = new Distributor({
         name, 
         location,
-        image,
         contact,
-        distributes
+        distributes, 
+        ...filteredOptionalFields
       });
       const savedDistributor = await newDistributor.save();
       res.status(201).json({ message: "Added distributor to Database successfully.", success: true, distributor: savedDistributor});
