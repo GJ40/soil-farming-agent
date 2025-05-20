@@ -17,15 +17,15 @@ const dashbaordRoutes = require('./routes/dashbaordRoutes');
 //db connection
 const connect = require('./utils/db');
 
-const corsOptions = cors({
+const corsOptions = {
     origin: ["http://localhost:5173", process.env.ORIGIN],
     credentials: true,
-    METHODS: ["GET", "POST", "PUT", "DELETE"],
-});
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+};
 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
-app.use(corsOptions);
 
 
 app.get("/api", (req, res) => {
