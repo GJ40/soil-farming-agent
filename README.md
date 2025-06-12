@@ -103,9 +103,9 @@ npm install
 - Create a .env file in /backend:
 
 ```bash
-PORT=4000
+PORT = 4000
 NODE_ENV = # development or production
-MONGO_URI=your_mongodb_connection_string
+MONGODB_URI = your_mongodb_connection_string
 ACCESS_TOKEN_SECRET =
 REFRESH_TOKEN_SECRET =
 
