@@ -2,7 +2,7 @@
 import axios from "axios";
 import { getToken, removeToken, removeUser, setToken } from "./Tokens";
 export const Instance = axios.create({
-    baseURL: "http://localhost:4000/",
+    baseURL: import.meta.env.VITE_BASE_URL ?? "http://localhost:4000/",
     withCredentials: true
 });
 
