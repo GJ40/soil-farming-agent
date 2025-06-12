@@ -32,7 +32,7 @@
 - Clean code structure and modular backend
 - Logging, error handling, and database indexing
 
-## Link Link
+## 🔗 Live Link
 
 - The project live [link](https://soilfarmingagent.netlify.app)
 
