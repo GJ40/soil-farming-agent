@@ -40,5 +40,9 @@ app.use('/admin', dashbaordRoutes);
 
 app.listen(process.env.PORT, () => {
   connect();
+  // const {createAdmin} = require('./utils/createAdmin');
+  // createAdmin();
+  // const { seedDB } = require('./seeds/seeding');
+  // seedDB();
   console.log(`server running at http://localhost:${process.env.PORT}/`);
 });

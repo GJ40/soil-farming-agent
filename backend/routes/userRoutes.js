@@ -9,7 +9,7 @@ router.post('/login', loginUser);
 router.post('/refresh', refresh);
 router.post('/logout', logout);
 // router.post('/adminLogin', loginAdmin);
-router.get('/', adminAuth, verifyJWT, getAllUsers);
+router.get('/', verifyJWT, adminAuth, getAllUsers);
 router.post('/getUsers', verifyJWT, adminAuth, getUsers);
 router.post('/register', registerUser);
 router.delete('/deleteUser',verifyJWT, adminAuth, deleteUser);

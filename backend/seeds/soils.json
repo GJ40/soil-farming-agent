@@ -1,0 +1,151 @@
+[
+  {
+    "soilType": "Alluvial Soil",
+    "description": "Rich, fertile soil formed by deposits of rivers like the Ganga and Brahmaputra. Ideal for a wide variety of crops due to balanced texture and high organic matter.",
+    "moistureContent": 18,
+    "image": "https://example.com/images/soils/alluvial-soil.jpg",
+    "nutrients": {
+      "nitrogen": "Moderate",
+      "phospohrus": "High",
+      "potassium": "Moderate"
+    },
+    "region": "Uttar Pradesh, Bihar, West Bengal, Punjab",
+    "phRange": {
+      "min": 6.5,
+      "max": 8
+    },
+    "suitableCrops": [
+      "Rice",
+      "Wheat",
+      "Sugarcane",
+      "Pulses",
+      "Vegetables"
+    ],
+    "createdBy": null
+  },
+
+  {
+    "soilType": "Black Soil (Regur)",
+    "description": "Clay-rich soil also known as cotton soil. Retains moisture exceptionally well and is ideal for deep-rooted crops.",
+    "moistureContent": 22,
+    "image": "https://example.com/images/soils/black-soil.jpg",
+    "nutrients": {
+      "nitrogen": "Low",
+      "phospohrus": "Low",
+      "potassium": "High"
+    },
+    "region": "Maharashtra, Gujarat, Madhya Pradesh, Karnataka",
+    "phRange": {
+      "min": 6.8,
+      "max": 8.4
+    },
+    "suitableCrops": [
+      "Cotton",
+      "Soybean",
+      "Sorghum",
+      "Sunflower",
+      "Pulses"
+    ],
+    "createdBy": null
+  },
+
+  {
+    "soilType": "Red Soil",
+    "description": "Soil formed from weathering of ancient crystalline rocks. Known for its reddish color due to iron oxide content.",
+    "moistureContent": 12,
+    "image": "https://example.com/images/soils/red-soil.jpg",
+    "nutrients": {
+      "nitrogen": "Low",
+      "phospohrus": "Low",
+      "potassium": "Moderate"
+    },
+    "region": "Tamil Nadu, Karnataka, Eastern Andhra Pradesh, Odisha",
+    "phRange": {
+      "min": 5.5,
+      "max": 7.2
+    },
+    "suitableCrops": [
+      "Millets",
+      "Groundnut",
+      "Cotton",
+      "Potatoes",
+      "Oilseeds"
+    ],
+    "createdBy": null
+  },
+
+  {
+    "soilType": "Laterite Soil",
+    "description": "Highly weathered soil found in areas of high rainfall. Rich in iron and aluminum but poor in organic matter and nitrogen.",
+    "moistureContent": 10,
+    "image": "https://example.com/images/soils/laterite-soil.jpg",
+    "nutrients": {
+      "nitrogen": "Low",
+      "phospohrus": "Low",
+      "potassium": "Low"
+    },
+    "region": "Kerala, Karnataka, West Bengal, Odisha",
+    "phRange": {
+      "min": 5,
+      "max": 6.5
+    },
+    "suitableCrops": [
+      "Tea",
+      "Coffee",
+      "Cashew",
+      "Rubber",
+      "Coconut"
+    ],
+    "createdBy": null
+  },
+
+  {
+    "soilType": "Desert Soil",
+    "description": "Sandy soil with low organic matter, found in arid regions. Requires irrigation and fertilization for crop growth.",
+    "moistureContent": 5,
+    "image": "https://example.com/images/soils/desert-soil.jpg",
+    "nutrients": {
+      "nitrogen": "Low",
+      "phospohrus": "Low",
+      "potassium": "Low"
+    },
+    "region": "Rajasthan, Kutch region of Gujarat",
+    "phRange": {
+      "min": 7.5,
+      "max": 8.7
+    },
+    "suitableCrops": [
+      "Millets",
+      "Barley",
+      "Guar",
+      "Cacti",
+      "Date Palm"
+    ],
+    "createdBy": null
+  },
+
+  {
+    "soilType": "Mountain Soil",
+    "description": "Found in hilly areas with cool climate; varies from sandy loam to clay. Good for plantation crops.",
+    "moistureContent": 14,
+    "image": "https://example.com/images/soils/mountain-soil.jpg",
+    "nutrients": {
+      "nitrogen": "Moderate",
+      "phospohrus": "Low",
+      "potassium": "Moderate"
+    },
+    "region": "Himalayan regions — Himachal Pradesh, Uttarakhand, Sikkim",
+    "phRange": {
+      "min": 5,
+      "max": 6.8
+    },
+    "suitableCrops": [
+      "Tea",
+      "Apples",
+      "Barley",
+      "Medicinal Plants",
+      "Vegetables"
+    ],
+    "createdBy": null
+  }
+]

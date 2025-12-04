@@ -1,0 +1,143 @@
+[
+  {
+    "name": "AgriSoil Inputs Pvt Ltd",
+    "location": "Nagpur, Maharashtra",
+    "image": "https://example.com/images/distributors/agrisoil-inputs.jpg",
+    "contactPerson": "Rohit Patil",
+    "contact": {
+      "phone": "+91-9876543210",
+      "email": "support@agrisoilinputs.in",
+      "whatsapp": "+91-9876543210",
+      "facebook": "https://facebook.com/agrisoilinputs"
+    },
+    "services": [
+      "Soil Testing",
+      "Fertilizer Supply",
+      "On-field Agronomy Support",
+      "Crop Advisory"
+    ],
+    "distributes": [
+      "Cotton",
+      "Soybean",
+      "Turmeric",
+      "Wheat"
+    ],
+    "createdBy": null
+  },
+  {
+    "name": "GreenLand Agro Distributors",
+    "location": "Guntur, Andhra Pradesh",
+    "image": "https://example.com/images/distributors/greenland-agro.jpg",
+    "contactPerson": "Suresh Reddy",
+    "contact": {
+      "phone": "+91-9123456780",
+      "email": "info@greenlandagro.co.in",
+      "whatsapp": "+91-9123456780",
+      "facebook": "https://facebook.com/greenlandagro"
+    },
+    "services": [
+      "Organic Fertilizers",
+      "Soil Improvement Solutions",
+      "Drip Irrigation Support"
+    ],
+    "distributes": [
+      "Chilli",
+      "Paddy",
+      "Tobacco"
+    ],
+    "createdBy": null,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "name": "Bharat Krishi Mandal",
+    "location": "Karnal, Haryana",
+    "image": "https://example.com/images/distributors/bharat-krishi-mandal.jpg",
+    "contactPerson": "Amit Sharma",
+    "contact": {
+      "phone": "+91-9988776655",
+      "email": "contact@bharatkrishimandal.com",
+      "whatsapp": "+91-9988776655",
+      "facebook": "https://facebook.com/bharatkrishimandal"
+    },
+    "services": [
+      "Soil Nutrition Planning",
+      "Government Scheme Assistance",
+      "Crop Protection Products"
+    ],
+    "distributes": [
+      "Wheat",
+      "Rice",
+      "Mustard"
+    ],
+    "createdBy": null
+  },
+  {
+    "name": "Kisan Soil & Fertilizer Centre",
+    "location": "Indore, Madhya Pradesh",
+    "image": "https://example.com/images/distributors/kisan-soil-centre.jpg",
+    "contactPerson": "Vikas Verma",
+    "contact": {
+      "phone": "+91-9090990090",
+      "email": "kisancentre@gmail.com",
+      "whatsapp": "+91-9090990090",
+      "facebook": "https://facebook.com/kisansoilcentre"
+    },
+    "services": [
+      "Soil Testing Kits",
+      "Bio-fertilizers",
+      "Crop Yield Monitoring"
+    ],
+    "distributes": [
+      "Soybean",
+      "Maize",
+      "Pulses"
+    ],
+    "createdBy": null
+  },
+  {
+    "name": "Shakti Agri Distributors",
+    "location": "Jaipur, Rajasthan",
+    "image": "https://example.com/images/distributors/shakti-agri.jpg",
+    "contactPerson": "Mahesh Choudhary",
+    "contact": {
+      "phone": "+91-9811122233",
+      "email": "sales@shaktiagri.in",
+      "whatsapp": "+91-9811122233",
+      "facebook": "https://facebook.com/shaktiagri"
+    },
+    "services": [
+      "Soil Health Enhancement Products",
+      "Drip & Sprinkler Installation",
+      "Farmer Training Workshops"
+    ],
+    "distributes": [
+      "Bajra",
+      "Mustard",
+      "Vegetables"
+    ],
+    "createdBy": null
+  },
+  {
+    "name": "Eastern Crop Solutions",
+    "location": "Siliguri, West Bengal",
+    "image": "https://example.com/images/distributors/eastern-crop-solutions.jpg",
+    "contactPerson": "Arjun Sen",
+    "contact": {
+      "phone": "+91-9000001100",
+      "email": "info@easterncropsolutions.in",
+      "whatsapp": "+91-9000001100",
+      "facebook": "https://facebook.com/easterncropsolutions"
+    },
+    "services": [
+      "Soil Amendment Products",
+      "Crop Nutrition Advisory",
+      "Pest Management Supplies"
+    ],
+    "distributes": [
+      "Tea",
+      "Rice",
+      "Maize"
+    ],
+    "createdBy": null
+  }
+]
